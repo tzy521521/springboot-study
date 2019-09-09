@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <!-- Globally enables or disables any caches configured in any mapper under this configuration -->
+        <!-- 配置全局性 cache 的 ( 开 / 关) default:true -->
+        <setting name="cacheEnabled" value="false"/>
+        <!-- Sets the number of seconds the driver will wait for a response from the database -->
+        <!-- 设置驱动等待数据响应的超时数 -->
+        <setting name="defaultStatementTimeout" value="2500"/>
+        <!-- Enables automatic mapping from classic database column names A_COLUMN to camel case classic Java property names aColumn -->
+        <!-- 是否 启用  数据中 A_column 自动映射 到 Java类中驼峰命名的属性 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- Allows JDBC support for generated keys. A compatible driver is required.
+        This setting forces generated keys to be used if set to true,
+         as some drivers deny compatibility but still work -->
+        <!--允许JDBC 生成主键。需要驱动器支持。如果设为了true，这个设置将强制使用被生成的主键，有一些驱动器不兼容,不过仍然可以执行。-->
+        <setting name="useGeneratedKeys" value="true"/>
+    </settings>
+
+    <!-- Continue editing here -->
+
+    <!--
+        3.typeAliases:起别名的标签
+            typeAlias:为某个java类型起别名
+                type:指定要起别名的全类名，默认别名就是类小写，(但是其实他是不区分大小写的，也就是说你全部大写也没问题)
+                alias:新的别名
+            package:为某个包下的类批量起别名(这个会存在的一个问题就是可能会重复，重复的情况下还可以用@Alias来解决)
+                name:指定包名(这个就相当于是为这个包下的所有的类都创建了一个默认的别名)
+        当然还有一个起别名的方式就是在实体上使用@Alias来起别名
+        注：起别名看自己的情况，推荐还是在mapper文件中使用全类名
+    -->
+    <typeAliases>
+        <package name="com.md"></package>
+    </typeAliases>
+
+
+    <!--
+        6.mappers：注册一个sql映射
+            mapper
+                有三种注册方式：resource url class
+                其中resource url是以配置文件的方式来注册  class是以接口的方式
+                resource：引用类路径下的sql映射文件
+                    <mapper resource="org/mybatis/builder/AuthorMapper.xml"/>
+                url：引用网络路径或者本地磁盘路径下的映射文件
+                    <mapper url="file:///var/mappers/PostMapper.xml"/>
+                class 有两种方式
+                    1.有sql映射文件时，这个文件xml文件要和接口同名且放在一起(在idea开发环境会遇到问题，就是加载不到MapperEmployee.xml
+                    解决方案是在pom中加入build标签的内容)
+                    2.没有映射文件而使用注解的方式(@Select @Delete @Insert @Update)，这个和spring data jpa类似。只不过要多加一步，将他的全限定名配置在class中
+                    注：在这里就有个问题，如果sql语句都用注解的方式，我们会不好管理，所以推荐的用法是不重要的用注解，比较重要的
+                    还是配置到映射文件中来统一管理。
+            以上这三类都是一个一个注册，还有一种批量注册的方式
+            package name是包名 但是批量注册要注意一个问题就是，在这个包下使用了注解方式的没有问题，没使用注解方式的我们就是
+            用到class方式第一种的方式，将sql的映射文件和接口放在一起
+    -->
+    <mappers>
+        <mapper resource="mybatis/mapper/CityDao.xml"/>
+    </mappers>
+
+</configuration>

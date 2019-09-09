@@ -22,6 +22,7 @@ public class InitRest {
 
     @GetMapping("/selectAll")
     public JsonResult listCities() {
+        logger.info("~~~~~~~~~~");
         List<City> list = this.cityService.selectAll();
         return new JsonResult(ResultCode.SUCCESS, list);
     }

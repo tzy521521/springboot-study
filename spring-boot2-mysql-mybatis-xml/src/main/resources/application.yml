@@ -5,6 +5,6 @@ spring:
     password: 843460950
     driver-class-name: com.mysql.jdbc.Driver
 server:
-  port: 9090
+  port: 8081
 mybatis:
   config-location: classpath:mybatis-config.xml

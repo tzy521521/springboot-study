@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/cfdb
+    username: root
+    password: 843460950
+server:
+  port: 8081

@@ -25,6 +25,7 @@
         <module>spring-boot2-rocketmq</module>
         <module>spring-boot2-schedule</module>
         <module>spring-boot2-mysql-multi-datasource</module>
+        <module>spring-boot2-multi-resources</module>
     </modules>
 
 
